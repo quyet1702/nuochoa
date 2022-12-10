@@ -1,0 +1,180 @@
+﻿@page
+@model DetailsModel
+@{
+    ViewData["Title"] = "Home page";
+}
+    <main>
+        <section class="image-details">
+            <div class="image-list">
+                <div class="image-item" style="background-image: url('@Model.product.Avatar')">
+                </div>
+                <div class="image-item" style="background-image: url('@Model.product.Image1')">
+                </div>
+                <div class="image-item" style="background-image: url('@Model.product.Image2')">
+                </div>
+                <div class="image-item" style="background-image: url('@Model.product.Image3')">
+                </div>
+            </div>
+            <div class="content-icon-zoom"><i class="fa-solid fa-minimize"></i></div>
+        </section>
+        <section class="section-title">
+            <div class="container">
+                <div class="row">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a asp-page="Index">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#">Nước Hoa Unisex</a></li>
+                        <li class="breadcrumb-item active"><a href="#">@Model.product.Name</a></li>
+                    </ol>
+                    <h1 class="title"  id="product-name">@Model.product.Name</h1>
+                    <a class="order-count" id="product-sold" href="">(Đã bán @Model.product.Sold)</a>
+                </div>
+            </div>
+        </section>
+        <section class="section-base-info">
+            <div class="container">
+                <div class="row">
+                    <div class="item-img">
+                        <div class="img-big">
+                            <a href="#">
+                                <img src="@Model.product.Avatar" alt="">
+                            </a>
+                        </div>
+                        <div class="img-small">
+                            <div class="img-content">
+                                <a href="#">
+                                    <img src="@Model.product.Avatar" alt="">
+                                </a>
+                            </div>
+                            <div class="img-content">
+                                <a href="#">
+                                    <img src="@Model.product.Image1" alt="">
+                                </a>
+                            </div>
+                            <div class="img-content">
+
+                                <a href="#">
+                                    <img src="@Model.product.Image2" alt="">
+                                </a>
+                            </div>
+                            <div class="img-content">
+
+                                <a href="#">
+                                    <img src="@Model.product.Image3" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-order">
+                        <div class="order-content">
+                            <p>Bạn đang chọn: <strong>@Model.product.Name @Model.product.Weight ML</strong></p>
+                            <p>Thương hiệu: <a href="#">@Model.product.Trademark</a></p>
+                            <div>
+                                <div class="product-price">
+                                    <i class="fa-solid fa-circle-info"></i><span>@Model.product.Weight ML</span>
+                                </div>
+
+                            </div>
+                            <div class="price" id="price">
+                                <p>Giá bán: @String.Format("{0:0,0đ}", Model.product.Price).Replace(",",".")</p>
+                            </div>
+                            <div class="promotion">
+                                <h4>Khuyến mãi & Chương trình</h4>
+                                <div class="promotion-info"><p>Nhập mã: <b>FREE20KSHIP</b> giảm 20k phí ship (HĐ từ 500k)</p></div>
+                            </div>
+                            <div class="check-product">
+                                @* <a href=""><i class="fa-solid fa-location-dot"></i> Kiểm tra cửa hàng còn hàng?</a> *@
+                            </div>
+                            <a href="tel:0939984498" class="btn-order">
+                                <b>Mua hàng</b>
+                                <p>Bấm vào đây để inbox mua hàng</p>
+                            </a>
+                            <p>Hotline: <a href="tel:0939984498">0939.98.44.98</a> ( 8:00 - 22:00)</p>
+                        </div>
+                    </div>
+                    <div class="item-support">
+                        <div class="sticky">
+
+                        <ul>
+                            <li><img src="../images/images-details/icon/shield-check.svg" alt=""><b>Cam kết hàng chính hãng 100%</b> <br>Hoàn tiền <b>200%</b> nếu phát hiện hàng giả</li>
+                            <li><img src="../images/images-details/icon/fill-drip-solid.svg" alt=""><b>Bảo hành đến giọt cuối cùng</b> <br>Đổi trả trong <b>7 ngày</b> <a asp-page="/SalesPolicy" rel="noopener">(Click Xem chi tiết)</a></li>
+                            <li><img src="../images/images-details/icon/clock.svg" alt=""> <b>Giao hàng nhanh 24h (Nội thành)</b></li>
+                            <li><img src="../images/images-details/icon/truck.svg" alt=""> <b>Miễn phí ship nội thành HĐ từ 700K (Nội thành HCM), từ 1.500k ( Ngoại thành) <a asp-page="/Order">(Click Xem chính sách)</a></b></li>
+                            <li><img src="../images/images-details/icon/gift-solid.svg" alt=""> <b>Miễn phí gói quà</b></li>
+                            <li><img src="../images/images-details/icon/money-svgrepo-com.svg" alt=""> <b>Hỗ trợ thanh toán thẻ tín dụng</b></li>
+                        </ul>
+                        <div class="product-info">
+                            <h3>Thông tin sản phẩm</h3>
+                            <table  id="product-info">
+                                <tbody>
+                                    <tr>
+                                        <th>Thương hiệu</th>
+                                        <td>
+                                            <a asp-page="/Index" asp-area="Admin" rel="">@Model.product.Trademark</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Giới tính</th>
+                                        <td>@Model.product.Sex</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Loại nước hoa</th>
+                                        <td>@Model.product.PerfumeType</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Năm phát hành</th>
+                                        <td>@Model.product.ReleaseYear</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Xuất xứ</th>
+                                        <td>@Model.product.Origin</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr style="background-color: #ccc;">
+                            <h3>Mùi Hương:</h3>
+                            @foreach (var item in Model.product.Scents)
+                            { 
+                                <ul style="">
+                                    <li style="display: block; padding-left:10px; font-size:16px">@item.ScentName</li>
+                                </ul>
+                            }
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-more-info">
+            <div class="container">
+                <div class="row">
+                    <div class="introduce">
+                        <div class="tab">
+                            <button class="tablinks active" onclick="changeDescription(event,'description')">Mô Tả</button>
+                            <button class="tablinks" onclick="changeDescription(event,'guide')">Cách sử dụng & bảo quản</button>
+                        </div>
+                        <div class="tabcontent" id="description">
+                            @Html.Raw(Model.product.Describe)
+                        </div>
+                        <div class="tabcontent" style="display: none;" id="guide">
+                            @Html.Raw(Model.product.UsageAndCare)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        function changeDescription(event,id){
+            var tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            var showDescription = document.getElementById(id);
+            showDescription.style.display = "block";
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            event.currentTarget.className += " active";
+        }
+    </script>

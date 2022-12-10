@@ -1,0 +1,336 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+        <section class="section-slideshow">
+            <div class="container">
+                <div class="row">
+                    <div class="slideshow">
+                        <button class="btn-left" onclick="btnLeftSlideShow()">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <div class="list-slide" id="slide-auto-translate">
+                            <div class="slide active">
+                                <img src="~/images/slider/slider-5.png" alt="">
+                            </div>
+                            <div class="slide">
+                                <img src="~/images/slider/slider-6.jpg" alt="">
+                            </div>
+                        </div>
+                        <button class="btn-right" onclick="btnRightSlideShow('slide-auto-translate')">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-menu-mobile">
+            <div class="container">
+                <div class="row">
+                    <div class="item">
+                        <a href="">
+                            <div class="image-content">
+                                <img src="images/spray-can-sparkles-solid.svg" alt="">
+                            </div>
+                            <p>Freshen Car Air</p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="">
+                            <div class="image-content">
+                                <img src="images/brand.svg" alt="">
+                            </div>
+                            <p>Thương hiệu</p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="">
+                            <div class="image-content">
+                                <img src="images/flash-sale.gif" alt="">
+                            </div>
+                            <p>BIG SALE</p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="">
+                            <div class="image-content">
+                                <img src="images/star.svg" alt="">
+                            </div>
+                            <p>Phong cách</p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="">
+                            <div class="image-content">
+                                <img src="images/shop-solid.svg" alt="">
+                            </div>
+                            <p>Danh sách shop</p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="">
+                            <div class="image-content">
+                                <img src="images/newspaper-solid.svg" alt="">
+                            </div>
+                            <p>Tin tức</p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="">
+                            <div class="image-content">
+                                <img src="images/chinhsachbaohanh.svg" alt="">
+                            </div>
+                            <p>Chính sách bảo hành</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @if(Model.productsType1.Count>0){
+        <section class="section-product" id="product-type-1">
+            <div class="container">
+                <h3 class="heading">Big sale</h3>
+                <div class="row">
+                    <div class="product-list" id="product-list">
+                        @foreach (var item in Model.productsType1)
+                        {
+                        <div class="product-item">
+                            <a asp-page="./Details" asp-route-id="@item.Id">
+                                <div class="image-content">
+                                    <img src="@item.Avatar" alt="">
+                                </div>
+                                <div class="text-content">
+                                    <h2>@item.Name</h2>
+                                    <span>@String.Format("{0:0,0 đ}", item.Price).Replace(",",".")</span>
+                                   <a class="details" asp-page="./Details" asp-route-id="@item.Id">Xem chi tiết</a>
+                                    <p>(Đã bán @item.Sold)</p>
+                                </div>
+                            </a>
+                        </div>
+                        }
+                    </div>
+                    <button class="btn-left" id="move-right" onclick="btnLeft('product-list','product-type-1')">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-right" onclick="btnRight('product-list','product-type-1')">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <div class="translate">
+                        @if (Model.productsType1.Count >0)
+                        {
+                            @for (int i = 0; i < Math.Ceiling((float)Model.productsType1.Count/5); i++)
+                            {
+                                 @if (i == 0){
+                                    <a class="btn-translate active"></a>
+                                 }else {
+                                    <a class="btn-translate"></a>
+                                 }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+
+
+        <section class="section-product" id="product-type-2">
+            <div class="container">
+                <h3 class="heading">Freshen Car Air</h3>
+                <div class="row">
+                        @if(Model.products.Count>0)
+                        {
+                    <div class="product-list" id="product-list-2">
+                        @foreach (var item in Model.products)
+                        {
+                        <div class="product-item">
+                           <a asp-page="./Details" asp-route-id="@item.Id">
+                                <div class="image-content">
+                                    <img src="@item.Avatar" alt="">
+                                </div>
+                                <div class="text-content">
+                                    <h2>@item.Name</h2>
+                                    <span>@String.Format("{0:0,0 đ}", item.Price).Replace(",",".")</span>
+                                    <a class="details" asp-page="./Details" asp-route-id="@item.Id">Xem chi tiết</a>
+                                    <p>(Đã bán @item.Sold)</p>
+                                </div>
+                            </a>
+                        </div>
+                        }
+                    </div>
+                    <button class="btn-left" onclick="btnLeft('product-list-2','product-type-2')">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-right" onclick="btnRight('product-list-2','product-type-2')">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <div class="translate">
+                        @if (Model.products.Count >0)
+                        {
+                            @for (int i = 0; i < Math.Ceiling((float)Model.products.Count/5); i++)
+                            {
+                                 @if (i == 0){
+                                    <a class="btn-translate active"></a>
+                                 }else {
+                                    <a class="btn-translate"></a>
+                                 }
+                            }
+                        }
+                    </div>
+                }
+                </div>
+                <div class="product-view-more"><a asp-page="FreshenCarAir" id="see-all">Xem thêm</a></div>
+            </div>
+        </section>
+        <section class="section-product" id="product-type-3">
+            <div class="container">
+                <h3 class="heading">Phong cách</h3>
+                <div class="row">
+                    @if(Model.productsType3.Count>0)
+                    {
+                    <div class="product-list" id="product-list-3">
+                        @foreach (var item in Model.productsType3)
+                        {
+                        <div class="product-item">
+                            <a asp-page="./Details" asp-route-id="@item.Id">
+                                <div class="image-content">
+                                    <img src="@item.Avatar" alt="">
+                                </div>
+                                <div class="text-content">
+                                    <h2>@item.Name</h2>
+                                    <span>@String.Format("{0:0,0 đ}", item.Price).Replace(",",".")</span>
+                                    <a class="details" asp-page="./Details" asp-route-id="@item.Id">Xem chi tiết</a>
+                                    <p>(Đã bán @item.Sold)</p>
+                                </div>
+                            </a>
+                        </div>
+                        }
+                    </div>
+                    <button class="btn-left"  onclick="btnLeft('product-list-3','product-type-3')">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-right" onclick="btnRight('product-list-3','product-type-3')">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <div class="translate">
+                        @if (Model.productsType3.Count >0)
+                        {
+                            @for (int i = 0; i < Math.Ceiling((float)Model.productsType3.Count/5); i++)
+                            {
+                                 @if (i == 0){
+                                    <a class="btn-translate active"></a>
+                                 }else {
+                                    <a class="btn-translate"></a>
+                                 }
+                            }
+                        }
+                    </div>
+                }
+                </div>
+            </div>
+        </section>
+        <section class="section-slogan">
+            <div class="container">
+                <div class="row">
+                    <div class="slogan-title">
+                        <img src="images/section-slogan/final.png" alt="">
+                        <h4>Chuỗi cửa hàng chuyên bán tinh dầu nước hoa cho ô tô</h4>
+                        <h3>TÂM AN - CHẤT LƯỢNG</h3>
+                    </div>
+                    <div class="slogan-info">
+                        <details>
+                        <summary>
+                            <p>
+                                Dịch vụ đổi trả miễn phí
+                            </p>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="text-content">
+                            <p>Quý khách được bảo hành
+                                tại tất cả showroom với điều kiện đáp ứng đầy đủ các
+                                điểm trong Quy Định Bảo Hành & Đổi Trả.
+                            </p>
+                            <p>
+                                Đối với các sản phẩm đáp
+                                ứng đầy đủ các điều kiện bảo hành được quy định cụ
+                                thể như trên thì khi tiến hành đổi trả sẽ giải quyết
+                                như sau:
+                            </p>
+                            <ul>
+                                <li><span>Đối với khách hàng đến
+                                        cửa hàng: Quý khách vui lòng mang sản phẩm đến
+                                        cửa hàng đã mua sản phẩm đó để được giải quyết
+                                        nhanh chóng</span></li>
+                                <li><span>Đối với khách hàng xa,
+                                        đổi trả Online: Khách gửi hàng về địa chỉ đã mua
+                                        hàng. Sau đó Butterfly Car Air gửi lại sản phẩm mới mà
+                                        không phải chịu phí ship khi nhận hàng.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        </details>
+                        <details>
+                        <summary>
+                            <p>
+                                Chính sách bảo hành
+                            </p>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="text-content">
+                                    <ul>
+                                        <li>Khi mua hàng, Quý Khách vui lòng kiểm tra kỹ sản phẩm trước khi mua hàng: sản phẩm phải có đầy đủ tem niêm yết của Butterfly Car Air, hộp có bọc nilon niêm phong của nhà sản xuất</li>
+                                        <li>Sản phẩm được đổi trả trong vòng 07 ngày kể từ ngày mua sản phẩm với điều kiện sản phẩm còn nguyên hộp có tem niêm yết của nhà phân phối và các phụ kiện kèm theo.</li>
+                                        <li>Nếu phát hiện kiện hàng bị hư hỏng do quá trình vận chuyện , quý khách vui lòng không nhận hàng và liên hệ ngay tới số Hotline của Chúng tôi để phản hồi kịp thời.</li>
+                                        <li>Không bảo hành đối với các sản phẩm không phải do Butterfly Car Air bán ra ( Không có hóa đơn mua hàng hoặc không còn giữ tem niêm yết của nhà phân phối).</li>
+                                        <li>Không bảo hành đối với các sản phẩm bị rơi vỡ do người sử dụng.</li>
+                                    </ul>
+                        </div>
+                        </details>
+                        <details>
+                        <summary>
+                            <p>
+                                Về chúng tôi
+                            </p>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                        <div class="text-content">
+                            <P>
+                                BUTTERFLY CAR AIR - Nước hoa xe hơi cao cấp dành cho mọi xế xịn <br>  LƯU HƯƠNG DÀI LÂU TRONG SUỐT HÀNH TRÌNH
+                            </p>
+                            <p>
+                                Butterfly car air là thương hiệu chuyên phân phối các dòng sản phẩm cung cấp mùi hương dành cho các dòng xe hơi. Chúng tôi sẵn sàng đồng hành cùng các bác tài trong các chặng hành trình dài nhằm đem lại cảm giác thư thái và xóa bỏ mọi mùi hôi khó chịu trong xe. Với đa dạng các sản phẩm như nước hoa xịt, sáp thơm, kẹp cửa gió, túi thơm của các thương hiệu nổi tiếng như
+                            </p>
+                            <p>
+                                <p style="margin-bottom: 0px">
+                                    🌈 AREON
+                                </p>
+                                <p style="margin-bottom: 0px">
+                                    🌈 ÉTONNER
+                                </p>
+                                <p style="margin-bottom: 0px">
+                                    🌈 D PROJECT
+                                </p>
+                                <p style="margin-bottom: 0px">
+                                    🌈 FEBREZE
+                                </p>
+                            </p>
+                            <p> 𝑩𝑼𝑻𝑻𝑬𝑹𝑭𝑳𝒀 𝑪𝑨𝑹 𝑨𝑰𝑹  𝐜𝐚𝐦 𝐤𝐞̂́𝐭 không chỉ quan tâm đến mùi hương trong xe hơi mà còn quan tâm đến sức khỏe của các khách hàng. Chúng tôi đảm bảo chỉ phân phối sản phẩm có nguồn gốc xuất xứ rõ ràng, thành phần an toàn và lành tính với mọi tài xế. Kiên quyết nói “ KHÔNG” với sản phẩm kém chất lượng hay có nguồn gốc không minh bạch.
+                            </p>
+                            <p> Với 3 tiêu chí TẬN TÂM - CHUYÊN NGHIỆP - CHẤT LƯỢNG,  𝑩𝑼𝑻𝑻𝑬𝑹𝑭𝑳𝒀 𝑪𝑨𝑹 𝑨𝑰𝑹 sẽ mang đến cho bạn sự hài lòng không chỉ về sản phẩm mà còn về thái độ phục vụ của chúng tôi. </p>
+                            <p> <span class="_5mfr"><span class="_6qdm" style="height: 16px; width: 16px; font-size: 16px; background-image: url(&quot;https://static.xx.fbcdn.net/images/emoji.php/v9/tf4/1/16/2728.png&quot;)">✨</span></span> Tăng trải nghiệm - trọn đam mê <br> Hân hạnh mời bạn đến địa chỉ…. để trải nghiệm các sản phẩm của chúng tôi một cách chân thật nhất. Hãy để các mùi hương “chạm” vào bạn và thay đổi cuộc hành trình của bạn !!!</p>
+                        </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            var navItem = document.querySelectorAll(".navbar .nav-menu .item a");
+            for(var i=0;i<navItem.length;i++){
+                navItem[i].className ='';
+                if(i==0){
+                    navItem[i].className ='active';
+                }
+            }
+        </script>

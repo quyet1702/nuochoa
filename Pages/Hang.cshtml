@@ -1,0 +1,153 @@
+@page
+@model HangModel
+<style>
+
+    .section-shop h2{
+        text-align: center;
+        padding: 20px;
+    }
+    .section-shop hr {
+        border: 0px;
+    }
+     .section-shop p {
+        list-style-type: disc;
+        list-style: outside;
+        padding: 10px;
+     }
+     .section-shop p{
+        line-height: 1.5;
+        font-size: 15px;
+        cursor: pointer;
+     }
+     .section-shop .google-map{
+        width: 100vw;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.5s;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: white;
+        padding-top: 50px;
+     }
+      .section-shop .google-map iframe{
+        width: 100%;
+        border: 0px;
+        height: 100%;
+      }
+      .section-shop .google-map div{
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        padding: 5px;
+        right: 20px;
+        font-size: 30px;
+      }
+      .heading {
+        font-size: 20px;
+        font-weight:400;
+        margin: 20px 0 30px;
+        }
+      .section-product {
+        margin-top: 60px;
+      }
+      .section-product .product-list {
+        white-space:unset !important;
+      }
+</style>
+<section class="section-filter">
+    <div class="container">
+        <div class="filter">
+            <div class="select">
+                <form action="" id="sub" method="get">
+                    <div>
+                        <input asp-for="@Model.minPrice" type="text" hidden>
+                        <input asp-for="@Model.maxPrice" type="text" hidden>
+                        <select onchange="a()" asp-for="brand" id="select"class ="form-control" asp-items="Model.brands"></select>
+                    </div>
+                </form>
+            </div>
+            <script>
+                function a(){
+                    document.getElementById("sub").submit();
+                }
+            </script>
+            <div class="price">
+                <ul>
+                    <label>Chọn mức giá: </label>
+                    <li><a asp-page="/Hang" asp-route-brand="@Model.brand">All price</a></li>
+                    <li><a asp-page="/Hang" asp-route-brand="@Model.brand" asp-route-minPrice="0" asp-route-maxPrice="2000000">Dưới 2 triệu</a></li>
+                    <li><a asp-page="/Hang" asp-route-brand="@Model.brand" asp-route-minPrice="2000000" asp-route-maxPrice="4000000">2 triệu - 4 triệu</a></li>
+                    <li><a asp-page="/Hang" asp-route-brand="@Model.brand" asp-route-minPrice="4000000" asp-route-maxPrice="6000000">4 triệu - 6 triệu</a></li>
+                    <li><a asp-page="/Hang" asp-route-brand="@Model.brand" asp-route-minPrice="6000000" asp-route-maxPrice="8000000">6 triệu - 8 triệu</a></li>
+                    <li><a asp-page="/Hang" asp-route-brand="@Model.brand" asp-route-minPrice="8000000" asp-route-maxPrice="100000000">trên 8 triệu</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-product product-all" id="product-type-1">
+            <div class="container">
+                <h5 class="heading">Treo</h5>
+                <div class="row">
+                    <div class="product-list" id="product-list">
+                        @if(Model.productsType2.Count()>0){
+                            @foreach (var item in Model.productsType2)
+                            {
+                                <div class="product-item">
+                                <a asp-page="Details" asp-route-id="@item.Id">
+                                    <div class="image-content">
+                                        <img src="~/@item.Avatar" alt="Không tìm thấy ảnh">
+                                    </div>
+                                </a>
+                                <div class="text-content"><a asp-page="Details">
+                                    <h2>@item.Name</h2>
+                                    <span>@String.Format("{0:0,0 đ}", item.Price).Replace(",",".")</span>
+                                    </a><a class="details" asp-page="Details" asp-route-id="@item.Id">Xem chi tiết</a>
+                                    <p>(Đã bán @item.Sold)</p>
+                                </div>
+                                    
+                                </div>
+                            }
+                        }
+                    </div>
+                    @if(Model.productsType2.Count()==0){
+                        <p>Chưa có sản phẩm</p>
+                    }
+                </div>
+            </div>
+    <script>
+        var itemIndex = 2;
+        var navItem = document.querySelectorAll(".navbar .nav-menu> .item> a");
+        var navItem1 = document.querySelectorAll(".navbar .nav-menu> .item> .subnav li a");
+        navItem1[2].style.color="red";
+        for(var i=0;i<navItem.length;i++){
+            navItem[i].className ='';
+            if(i==itemIndex){
+                 navItem[i].className ='active';
+            }
+        }
+        var navMobileItem = document.querySelectorAll(".nav-mobile .menu li a");
+        for(var i=0;i<navMobileItem.length;i++){
+            navMobileItem[i].className ='';
+            if(i==itemIndex){
+                 navMobileItem[i].className ='active';
+            }
+        }
+        function showMap(id){
+            var a = document.getElementById(id);
+            a.style.transform = "translateX(0%)"
+        }
+        function closeMap(){
+            var a = document.getElementById('map1');
+            a.style.transform="translateX(-100%)";
+            var b = document.getElementById('map2');
+            b.style.transform="translateX(-100%)";
+            var c = document.getElementById('map3');
+            c.style.transform="translateX(-100%)";
+            var d = document.getElementById('map4');
+            d.style.transform="translateX(-100%)";
+        }
+    </script>
+</section>

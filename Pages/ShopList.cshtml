@@ -1,0 +1,114 @@
+@page
+<style>
+
+    .section-shop h2{
+        text-align: center;
+        padding: 20px;
+    }
+    .section-shop hr {
+        border: 0px;
+    }
+     .section-shop p {
+        list-style-type: disc;
+        list-style: outside;
+        padding: 10px;
+     }
+     .section-shop p{
+        line-height: 1.5;
+        font-size: 15px;
+        cursor: pointer;
+     }
+     .section-shop .google-map{
+        width: 100vw;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.5s;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: white;
+        padding-top: 50px;
+     }
+      .section-shop .google-map iframe{
+        width: 100%;
+        border: 0px;
+        height: 100%;
+      }
+      .section-shop .google-map div{
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        padding: 5px;
+        right: 20px;
+        font-size: 30px;
+      }
+</style>
+<section class="section-shop">
+    <div class="container">
+        <h2>Danh sách Cửa hàng</h2>
+        <h3>Chi nhánh 1:</h3>
+        <p onclick="showMap('map1')">59 Phó Đức Chính, P. Nguyễn Thái Bình, Quận 1, HCM</p>
+        <h3>Chi nhánh 2:</h3>
+        <p onclick="showMap('map2')"> 118/6A Nguyễn Thị Thập, P. Bình Thuận, Q.7, HCM</p>
+        <h3>Chi nhánh 3:</h3>
+        <p onclick="showMap('map3')">Số 14 Đường số 2, P. Tân Phú, Q.7, HCM</p>
+        <h3>Chi nhánh 4:</h3>
+        <p onclick="showMap('map4')">90/29 Trần Văn Ơn, P. Tân Sơn Nhì, Quận Tân Phú, HCM</p>
+        <div  id="map1" class="google-map">
+            <div onclick="closeMap()">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31353.186260399187!2d106.61629546837652!3d10.79995296319178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zOTAvMjkgVHLhuqduIFbEg24gxqBuLCBQLiBUw6JuIFPGoW4gTmjDrCwgUXXhuq1uIFTDom4gUGjDui4!5e0!3m2!1svi!2s!4v1664807164619!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div id="map2" class="google-map">
+            <div onclick="closeMap()">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31353.186260399187!2d106.61629546837652!3d10.79995296319178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zOTAvMjkgVHLhuqduIFbEg24gxqBuLCBQLiBUw6JuIFPGoW4gTmjDrCwgUXXhuq1uIFTDom4gUGjDui4!5e0!3m2!1svi!2s!4v1664807164619!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div id="map3" class="google-map">
+            <div onclick="closeMap()">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+         <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31353.186260399187!2d106.61629546837652!3d10.79995296319178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zOTAvMjkgVHLhuqduIFbEg24gxqBuLCBQLiBUw6JuIFPGoW4gTmjDrCwgUXXhuq1uIFTDom4gUGjDui4!5e0!3m2!1svi!2s!4v1664807164619!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div id="map4" class="google-map">
+            <div onclick="closeMap()">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+         <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31353.186260399187!2d106.61629546837652!3d10.79995296319178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zOTAvMjkgVHLhuqduIFbEg24gxqBuLCBQLiBUw6JuIFPGoW4gTmjDrCwgUXXhuq1uIFTDom4gUGjDui4!5e0!3m2!1svi!2s!4v1664807164619!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+    <script>
+        var index = 3;
+        var navItem = document.querySelectorAll(".navbar .nav-menu> .item> a");
+        for(var i=0;i<navItem.length;i++){
+            navItem[i].className ='';
+            if(i==index){
+                 navItem[i].className ='active';
+            }
+        }
+        var navMobileItem = document.querySelectorAll(".nav-mobile> .menu> li> a");
+        for(var i=0;i<navMobileItem.length;i++){
+            navMobileItem[i].className ='';
+            if(i==index){
+                 navMobileItem[i].className ='active';
+            }
+        }
+        function showMap(id){
+            var a = document.getElementById(id);
+            a.style.transform = "translateX(0%)"
+        }
+        function closeMap(){
+            var a = document.getElementById('map1');
+            a.style.transform="translateX(-100%)";
+            var b = document.getElementById('map2');
+            b.style.transform="translateX(-100%)";
+            var c = document.getElementById('map3');
+            c.style.transform="translateX(-100%)";
+            var d = document.getElementById('map4');
+            d.style.transform="translateX(-100%)";
+        }
+    </script>
+</section>

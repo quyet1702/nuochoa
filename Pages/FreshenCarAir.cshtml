@@ -1,0 +1,110 @@
+﻿@page
+@model FreshenCarAirModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<style>
+    .heading {
+        font-size: 20px;
+        font-weight:400;
+        margin: 20px 0 30px;
+    }
+    .section-product .product-list{
+            white-space: unset;
+    }
+    .section-filter .select > ul{
+        display: flex;
+    }
+    .section-filter .select > ul> li{
+        position: relative;
+        padding: 10px;
+    }
+    .section-filter .select > ul>li:hover > .sub-filter {
+        display: block;
+        z-index: 10;
+        position: absolute;
+        border: 1px solid #ccc;
+        background-color: white;
+    }
+    .section-filter .select > ul>li:hover > .sub-filter li a {
+        display: inline-block;
+        padding: 10px;
+        white-space: nowrap;
+    }
+    .section-filter .select > ul>li:hover > .sub-filter li:hover a {
+        background-color: #ccc;
+    }
+    
+</style>
+<section class="section-filter">
+    <div class="container">
+        <div class="filter">
+            <div class="select">
+                <form action="" id="sub" method="get">
+                    <div>
+                        <input asp-for="@Model.minPrice" type="text" hidden>
+                        <input asp-for="@Model.maxPrice" type="text" hidden>
+                        <select onchange="a()" asp-for="brand" id="select"class ="form-control" asp-items="Model.brands"></select>
+                    </div>
+                </form>
+            </div>
+            <script>
+                function a(){
+                    document.getElementById("sub").submit();
+                }
+            </script>
+            <div class="price">
+                <ul>
+                    <label>Chọn mức giá: </label>
+                    <li><a asp-page="FreshenCarAir" asp-route-brand="@Model.brand">All price</a></li>
+                    <li><a asp-page="FreshenCarAir" asp-route-brand="@Model.brand" asp-route-minPrice="0" asp-route-maxPrice="2000000">Dưới 2 triệu</a></li>
+                    <li><a asp-page="FreshenCarAir" asp-route-brand="@Model.brand" asp-route-minPrice="2000000" asp-route-maxPrice="4000000">2 triệu - 4 triệu</a></li>
+                    <li><a asp-page="FreshenCarAir" asp-route-brand="@Model.brand" asp-route-minPrice="4000000" asp-route-maxPrice="6000000">4 triệu - 6 triệu</a></li>
+                    <li><a asp-page="FreshenCarAir" asp-route-brand="@Model.brand" asp-route-minPrice="6000000" asp-route-maxPrice="8000000">6 triệu - 8 triệu</a></li>
+                    <li><a asp-page="FreshenCarAir" asp-route-brand="@Model.brand" asp-route-minPrice="8000000" asp-route-maxPrice="100000000">trên 8 triệu</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section class="section-product product-all" id="product-type-2">
+            <div class="container">
+                <h5 class="heading">Freshen Car Air</h5>
+                <div class="row">
+                    <div class="product-list" id="product-list-2">
+                        @if(Model.products.Count()>0){
+
+                        @foreach (var item in Model.products)
+                        {
+                        <div class="product-item">
+                           <a asp-page="./Details" asp-route-id="@item.Id">
+                                <div class="image-content">
+                                    <img src="@item.Avatar" alt="">
+                                </div>
+                                <div class="text-content">
+                                    <h2>@item.Name</h2>
+                                    <span>@String.Format("{0:0,0 đ}", item.Price).Replace(",",".")</span>
+                                    <a class="details" asp-page="./Details" asp-route-id="@item.Id">Xem chi tiết</a>
+                                    <p>(Đã bán @item.Sold)</p>
+                                </div>
+                            </a>
+                        </div>
+                        }
+                        }
+                        else {
+                            <p style="color:black; display:block; font-size:15px">Không có sản phẩm</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            var navItem = document.querySelectorAll(".navbar .nav-menu .item a");
+            for(var i=0;i<navItem.length;i++){
+                navItem[i].className ='';
+                if(i==0){
+                    navItem[i].className ='active';
+                }
+            }
+        </script>

@@ -1,0 +1,138 @@
+@page
+@model ButterflyCarair.Areas_Admin_Pages_Product.DetailsModel
+
+@{
+    ViewData["Title"] = "Chi tiết Sản phẩm";
+}
+<style>
+    img {
+        height: 200px;
+        width:auto;
+    }
+</style>
+
+<div>
+    <h4>Chi tiết Sản phẩm</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Ảnh đặt trang chủ
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/@Model.Product.Avatar" alt="Không tìm thấy ảnh">
+        </dd>
+        <dt class="col-sm-2">
+           Tên Sản phẩm
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Giá Sản phẩm
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Price)
+        </dd>
+        <dt class="col-sm-2">
+            Dung tích
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Weight)
+        </dd>
+        <dt class="col-sm-2">
+            Đã bán
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Sold)
+        </dd>
+        <dt class="col-sm-2">
+            Ảnh chi tiết 1
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/@Model.Product.Image1" alt="Không tìm thấy ảnh">
+        </dd>
+        <dt class="col-sm-2">
+            Ảnh chi tiết 2
+        </dt>
+        <dd class="col-sm-10">
+             <img src="~/@Model.Product.Image2" alt="Không tìm thấy ảnh">
+        </dd>
+        <dt class="col-sm-2">
+            Ảnh chi tiết 3
+        </dt>
+        <dd class="col-sm-10">
+             <img src="~/@Model.Product.Image3" alt="Không tìm thấy ảnh">
+        </dd>
+        <dt class="col-sm-2">
+            Ảnh chi tiết 4
+        </dt>
+        <dd class="col-sm-10">
+             <img src="~/@Model.Product.Image4" alt="Không tìm thấy ảnh">
+        </dd>
+        
+        <dt class="col-sm-2">
+            Mô tả Chi tiết Sản phẩm
+        </dt>
+        <dd class="col-sm-10">
+            @Html.Raw(Model.Product.Describe)
+        </dd>
+        <dt class="col-sm-2">
+            Hướng Dẫn sử dụng và bảo quản
+        </dt>
+        <dd class="col-sm-10">
+            @Html.Raw(Model.Product.UsageAndCare)
+        </dd>
+        <dt class="col-sm-2">
+            Thương hiệu
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Trademark)
+        </dd>
+        <dt class="col-sm-2">
+            Giới Tính
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Sex)
+        </dd>
+        @* <dt class="col-sm-2">
+            Nồng Độ
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Concentration)
+        </dd> *@
+        <dt class="col-sm-2">
+            Loại nước hoa
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.PerfumeType)
+        </dd>
+        @* <dt class="col-sm-2">
+            Phong Cách
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Style)
+        </dd> *@
+        <dt class="col-sm-2">
+            Năm phát hành
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.ReleaseYear)
+        </dd>
+        <dt class="col-sm-2">
+            Xuất xứ
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Origin)
+        </dd>
+        <dt class="col-sm-2">
+            Loại Sản Phẩm
+        </dt>
+        <dd class="col-sm-10">
+            @((Model.Product.ProductType=="1")?"Hương hoa Ô tô":Model.Product.ProductType=="2"?"Phong Cách":"")
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Product?.Id">Sửa Sản Phẩm</a> |
+    <a asp-page="./Index">Quay Lại</a>
+</div>

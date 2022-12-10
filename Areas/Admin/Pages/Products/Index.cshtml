@@ -1,0 +1,81 @@
+@page
+@model ButterflyCarair.Areas_Admin_Pages_Product.IndexModel
+
+@{
+    ViewData["Title"] = "Quản lý sản phẩm";
+}
+
+<h1>Quản lý sản phẩm</h1>
+<p>
+    <a asp-page="Create">Thêm sản phẩm</a>
+</p>
+<form action="" id="form-select" method="get" >
+    <select asp-for="productType" onchange="submit()" id="select-product" class ="form-control" asp-items="Model.productTypes"></select>
+<button class="btn btn-success">Lọc Sản Phẩm</button>
+</form>
+<script>
+    function submit(){
+        var selectProduct = document.getElementById('select-product');
+        selectProduct.submit();
+    };
+</script>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Đã bán
+            </th>
+            @* <th>
+                Vị trí
+            </th> *@
+            <th>
+                Dung tích
+            </th>
+            <th>
+                Loại sản phẩm
+            </th>
+            <th>
+                Khuyến Mãi
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Product) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+             <td>
+                @String.Format("{0:0,0}", item.Price).Replace(",",".")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sold)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.ProductLocation)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @((item.ProductType=="1")?"Kẹp cửa gió":item.ProductType=="2"?"Đặt Taplo":item.ProductType=="3"?"Treo":item.ProductType=="4"?"Xịt":"")
+            </td>
+            <td>
+                @((item.Promotion==true)?"Có":"Không")
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Sửa</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Chi tiết</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+@page
+@model ButterflyCarair.Areas_Admin_Pages_Product.DeleteModel
+
+@{
+    ViewData["Title"] = "Xóa Sản Phẩm";
+}
+
+<h1>Xóa</h1>
+
+<h3>Bạn có chắc muốn xóa?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên Sản Phẩm
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Giá
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Price)
+        </dd>
+        <dt class="col-sm-2">
+            Đã bán
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Sold) cái
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Product.Id" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-page="./Index">Quay Lại</a>
+    </form>
+</div>

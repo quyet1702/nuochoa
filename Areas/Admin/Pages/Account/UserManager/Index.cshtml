@@ -1,0 +1,62 @@
+@page
+@model ButterflyCarair.Pages_UserManager.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Quản lý Tài khoản khách hàng</h1>
+
+<p>
+    <a asp-page="Create">Thêm mới</a>
+</p>
+<div class="table-responsive">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Họ Tên
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Số Điện Thoại
+            </th>
+            <th>Loại tài khoản</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.User) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Sửa</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Chi tiết</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Xóa</a>
+                    </td>
+                </tr>
+        }
+
+    </tbody>
+</table>
+</div>

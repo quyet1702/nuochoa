@@ -1,0 +1,94 @@
+@page
+@model BlogDetailsModel
+<style>
+
+    .section-blog-details h1{
+        margin: 25px 0px;
+        line-height: 1.2;
+        font-size: 41px;
+        font-family: 'Noto Serif',serif;
+    }
+     .section-blog-details ul {
+        list-style-type: disc;
+        list-style: outside;
+        padding: 20px 40px;
+     }
+     .section-blog-details ul li{
+        line-height: 1.5;
+        font-size: 15px;
+     }
+     .section-blog-details .blog-item{
+        margin-top: 29px;
+        width: 80%;
+        margin-bottom: 15px;
+        overflow: hidden;
+     }
+     .section-blog-details .blog-img {
+        width: 33%;
+        margin-right: 15px;
+        float: left;
+     }
+     .section-blog-details .blog-img img{
+        width: 100%;
+        height: auto;
+     }
+     .section-blog-details .blog-content {
+     }
+     .section-blog-details .blog-title a{
+        font-size: 19px;
+        color: #333;
+        line-height: 1.3;
+     }
+     .section-blog-details .blog-date {
+        color:#726c6c;
+        margin-bottom: 10px;
+     }
+     .section-blog-details hr:not(.hr-top) {
+        width: 80%;
+        border-color: #fff8f8;
+     }
+      .section-blog-details span {
+        color: #888;
+        margin-bottom: 18px;
+        display: block;
+        line-height: 1.2;
+      }
+      .section-blog-details img {
+        margin-bottom: 18px;
+        width: 100%;
+        height: auto;
+      }
+     .section-blog-details p {
+        display: block;
+        color: #333;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 18px;
+        line-height: 1.618;
+        font-family: 'Noto Serif',serif;
+     }
+</style>
+<section class="section-blog-details">
+    <div class="container">
+        <h1>@Model.New.Title</h1>
+        <span>Thứ hai, 24/10/2022 12:17 (GMT+7)</span>
+        @Html.Raw(Model.New.Details);
+    </div>
+    <script>
+        var index = 4;
+        var navItem = document.querySelectorAll(".navbar .nav-menu> .item> a");
+        for(var i=0;i<navItem.length;i++){
+            navItem[i].className ='';
+            if(i==index){
+                 navItem[i].className ='active';
+            }
+        }
+        var navMobileItem = document.querySelectorAll(".nav-mobile > .menu> li> a");
+        for(var i=0;i<navMobileItem.length;i++){
+            navMobileItem[i].className ='';
+            if(i==index){
+                 navMobileItem[i].className ='active';
+            }
+        }
+    </script>
+</section>
