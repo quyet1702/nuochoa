@@ -1,0 +1,122 @@
+@page
+@model BigSaleModel
+<style>
+
+    .section-shop h2{
+        text-align: center;
+        padding: 20px;
+    }
+    .section-shop hr {
+        border: 0px;
+    }
+     .section-shop p {
+        list-style-type: disc;
+        list-style: outside;
+        padding: 10px;
+     }
+     .section-shop p{
+        line-height: 1.5;
+        font-size: 15px;
+        cursor: pointer;
+     }
+     .section-shop .google-map{
+        width: 100vw;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.5s;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: white;
+        padding-top: 50px;
+     }
+      .section-shop .google-map iframe{
+        width: 100%;
+        border: 0px;
+        height: 100%;
+      }
+      .section-shop .google-map div{
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        padding: 5px;
+        right: 20px;
+        font-size: 30px;
+      }
+      .section-product {
+        margin-top: 60px;
+      }
+      .section-product .product-list {
+        white-space:unset !important;
+      }
+</style>
+<section class="section-slideshow">
+    <div class="">
+        <div class="row">
+            <div class="slideshow">
+                <div class="list-slide" id="slide-auto-translate">
+                    <div class="slide">
+                        <img src="~/images/slider/slider-5.png" alt="">
+                    </div>
+                    <div class="slide">
+                        <img src="~/images/slider/slider-7.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-product" id="product-type-1">
+<div class="container">
+    <h3 class="heading">Giới Thiệu</h3>
+    <P style="padding-bottom: 7px;" >
+        BUTTERFLY CAR AIR là thương hiệu chuyên phân phối các dòng sản phẩm cung cấp mùi hương dành cho các dòng xe hơi. Chúng tôi cam kết không chỉ quan tâm đến mùi hương trong xe hơi mà còn quan tâm đến Sức Khỏe của Khách Hàng. Chúng tôi đảm bảo chỉ phân phối sản phẩm có nguồn gốc xuất sứ rõ ràng, thành phần an toàn và lành tính. 
+    </p>
+    <p style="padding-bottom: 7px;" >
+        KIÊN QUYẾT NÓI KHÔNG VỚI SẢN PHẨM KÉM CHẤT LƯỢNG HAY CÓ NGUỒN GỐC KHÔNG MINH BẠCH.
+    </p>
+    <p style="padding-bottom: 7px;" >
+        Với 3 tiêu chí TẬN TÂM - CHUYÊN NGHIỆP - CHẤT LƯỢNG
+    </p>
+    <p style="padding-bottom: 7px;">
+        Hân hạnh mời bạn đến địa chỉ…. để trải nghiệm các sản phẩm của chúng tôi một cách chân thật nhất. Hãy để các mùi hương “chạm” vào bạn và thay đổi cuộc hành trình của bạn !!!
+    </p>
+    <p>
+        Thương hiệu Butterfly Car Air thuộc sở hữu của Công Ty TNHH SX TM DV Thuận Phát.
+    </p>
+</div>
+    <script>
+        let index = 1;
+        var navItem = document.querySelectorAll(".navbar .nav-menu> .item> a");
+        var navItem1 = document.querySelectorAll(".navbar .nav-menu> .item> .subnav li a");
+        navItem1[0].style.color="red";
+        for(var i=0;i<navItem.length;i++){
+            navItem[i].className ='';
+            if(i==index){
+                 navItem[i].className ='active';
+            }
+        }
+        var navMobileItem = document.querySelectorAll(".nav-mobile .menu li a");
+        for(var i=0;i<navMobileItem.length;i++){
+            navMobileItem[i].className ='';
+            if(i==index){
+                 navMobileItem[i].className ='active';
+            }
+        }
+        function showMap(id){
+            var a = document.getElementById(id);
+            a.style.transform = "translateX(0%)"
+        }
+        function closeMap(){
+            var a = document.getElementById('map1');
+            a.style.transform="translateX(-100%)";
+            var b = document.getElementById('map2');
+            b.style.transform="translateX(-100%)";
+            var c = document.getElementById('map3');
+            c.style.transform="translateX(-100%)";
+            var d = document.getElementById('map4');
+            d.style.transform="translateX(-100%)";
+        }
+    </script>
+</section>

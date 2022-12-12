@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html  onscroll="aa()" lang="en">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 	<link rel = "icon" href = "~/images/LogoTitle.svg" type = "image/x-icon">
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
     <title>
@@ -16,13 +17,55 @@
         
 </head>
 <body>
-    <header>
-        <div class="slogan">
-            Chuỗi Siêu Thị Tinh Dầu Nước Hoa Cao Cấp Dành Cho Xe Ô tô
+    <div class="slogan">
+        <div class="container">
+            <div class="row wrap">
+                <div class="col">
+                    <span class="slogan-text">Chuỗi Siêu Thị Tinh Dầu Nước Hoa Cao Cấp Dành Cho Xe Ô tô
+                        <span style="margin: 0px 20px;">|</span>
+                    </span>
+                    <span>Hotline: 0939.98.44.98</span>
+                </div>
+                <div class="col">
+                    <div class="search">
+                        <div class="content-input">
+                            <input type="text" placeholder="Tìm kiếm">
+                            <div class="icon-search">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="site-logo">
+    </div>
+    <header>
+        <nav class="navbar">
             <div class="container">
-                <div class="row">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="logo row align-items-center">
+                            <a href="">
+                                <img src="~/images/Logobutterfly.svg" alt="">
+                            </a>
+                            <span>Butterflycar Air</span>
+                        </div>
+                    </div>
+                    <ul class="nav-menu">
+                        <li class="item"><a class="active" asp-page="/Index">Trang Chủ</a></li>
+                        <li class="item"><a asp-page="/Introduce">Giới Thiệu</a></li>
+                        <li class="item"><a asp-page="/BigSale">Big Sale</a></li>
+                        <li class="item">
+                            <a style="cursor:pointer;">Model <i style="font-size: 12px;" class="fa-solid fa-chevron-down"></i></a>
+                            <ul class="subnav">
+                                <li><a asp-page="/HangLouver">Kẹp cửa gió</a></li>
+                                <li><a asp-page="/SetTaplo">Đặt Taplo</a></li>
+                                <li><a asp-page="/Hang">Treo</a></li>
+                            </ul>
+                        </li>
+                        <li class="item"><a asp-page="/Blog/News">Tin tức</a></li>
+                        <li class="item"><a asp-page="/SalesPolicy">Chính sách bán hàng</a></li>
+                    </ul>
                     <div class="hamburger" id="hamburger" onclick="addNavMobile('nav-mobile')">
                         <div class="hamburger-content">
                             <div></div>
@@ -30,69 +73,38 @@
                             <div></div>
                         </div>
                     </div>
-                    <div class="logo">
-                        <a href="">
-                            <img src="~/images/logo-butterfly.png" alt="">
-                        </a>
-                    </div>
-                    <div class="search">
-                        <input type="text" placeholder="Tìm sản phẩm, thương hiệu">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                </div>
+                </div>              
             </div>
-        </div>
-        <nav class="navbar">
-            <div class="container">
-                <ul class="nav-menu">
-                    <li class="item"><a class="active" asp-page="/Index">Freshen Car Air</a></li>
-                    <li class="item"><a asp-page="/BigSale">Big Sale</a></li>
-                    <li class="item">
-                        <a style="cursor:pointer;">Model <i style="font-size: 12px;" class="fa-solid fa-chevron-down"></i></a>
-                        <ul class="subnav">
+            <div class="nav-mobile" id="nav-mobile">
+                <ul class="menu">
+                    <li>
+                        <a class="active" asp-page="/Index">Trang Chủ</a>
+                    </li>
+                    <li>
+                        <a class="" asp-page="/Introduce">Giới Thiệu</a>
+                    </li>
+                    <li class="">
+                        <a asp-page="/BigSale">BIG SALE</a>
+                    </li>
+                    <li class="" id="btn-model">
+                        <a onclick="btnModel()">MODEL <i style="font-size: 15px;" class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="subnav" id="sub-model">
                             <li><a asp-page="/HangLouver">Kẹp cửa gió</a></li>
                             <li><a asp-page="/SetTaplo">Đặt Taplo</a></li>
                             <li><a asp-page="/Hang">Treo</a></li>
                         </ul>
                     </li>
-                    <li class="item"><a asp-page="/ShopList">Danh sách shop</a></li>
-                    <li class="item"><a asp-page="/Blog/News">Tin tức</a></li>
-                    <li class="item"><a asp-page="/SalesPolicy">Chính sách bán hàng</a></li>
-                </ul>                
-            </div>
-        </div>
-    </header>
-    <div class="nav-mobile" id="nav-mobile">
-        <a href="#">
-            <img src="~/images/logo-butterfly.png" alt="">
-        </a>
-        <a class="cancel" href="#" onclick="removeNavMobile('nav-mobile')"><i class="fa-solid fa-xmark"></i></a>
-        <ul class="menu">
-            <li>
-                <a class="active" asp-page="/Index">FRESHEN CAR AIR</a>
-            </li>
-            <li class="">
-                <a asp-page="/BigSale">BIG SALE</a>
-            </li>
-            <li class="" id="btn-model">
-                <a onclick="btnModel()">MODEL <i style="font-size: 15px;" class="fa-solid fa-chevron-down"></i></a>
-                <ul class="subnav" id="sub-model">
-                    <li><a asp-page="/HangLouver">Kẹp cửa gió</a></li>
-                    <li><a asp-page="/SetTaplo">Đặt Taplo</a></li>
-                    <li><a asp-page="/Hang">Treo</a></li>
+                    <li class="">
+                        <a asp-page="/Blog/News">TIN TỨC</a>
+                    </li>
+                    <li class="">
+                        <a asp-page="/SalesPolicy">CHÍNH SÁCH BÁN HÀNG</a>
+                    </li>
                 </ul>
-            </li>
-            <li class="">
-                <a asp-page="/ShopList">DANH SÁCH SHOP</a>
-            </li>
-            <li class="">
-                <a asp-page="/Blog/News">TIN TỨC</a>
-            </li>
-            <li class="">
-                <a asp-page="/SalesPolicy">CHÍNH SÁCH BÁN HÀNG</a>
-            </li>
-        </ul>
-    </div>
+            </div>
+        </nav>
+    </header>
+
     <main>
         @RenderBody()
     </main>
@@ -105,31 +117,19 @@
         <div class="container">
             <div class="row">
                 <div class="footer-about">
-                    <h4 style="padding-bottom: 7px;" ><i class="fa-solid fa-user"></i>Về chúng tôi</h4>
-                    <P style="padding-bottom: 7px;" >
-                        BUTTERFLY CAR AIR là thương hiệu chuyên phân phối các dòng sản phẩm cung cấp mùi hương dành cho các dòng xe hơi. Chúng tôi cam kết không chỉ quan tâm đến mùi hương trong xe hơi mà còn quan tâm đến Sức Khỏe của Khách Hàng. Chúng tôi đảm bảo chỉ phân phối sản phẩm có nguồn gốc xuất sứ rõ ràng, thành phần an toàn và lành tính. 
+                    <h3 style="text-align: center; margin: 20px 0">Công Ty TNHH SX TM DV Thuận Phát</h3>
+                    <div class="content-img">
+                        <img src="~/images/Logobutterfly.svg" alt="">
+                    </div>
+                    <p style="font-weight: bold; font-size:16px; padding: 20px 0px; text-align:center">Butterflycar Air</p>
+                    <p style="text-align: center;">
+                        <a href="#" class="dmca">
+                            <img src="~/images/footer/logodathongbao.png" alt="">
+                        </a>
+                        <a class="icon-fb" href="https://www.Facebook.com/butterflycarair">
+                            <img src="~/images/footer/fb.png" alt="">
+                        </a>
                     </p>
-                    <p style="padding-bottom: 7px;" >
-                        KIÊN QUYẾT NÓI KHÔNG VỚI SẢN PHẨM KÉM CHẤT LƯỢNG HAY CÓ NGUỒN GỐC KHÔNG MINH BẠCH.
-                    </p>
-                    <p style="padding-bottom: 7px;" >
-                        Với 3 tiêu chí TẬN TÂM - CHUYÊN NGHIỆP - CHẤT LƯỢNG
-                    </p>
-                    <p style="padding-bottom: 7px;">
-                        Hân hạnh mời bạn đến địa chỉ…. để trải nghiệm các sản phẩm của chúng tôi một cách chân thật nhất. Hãy để các mùi hương “chạm” vào bạn và thay đổi cuộc hành trình của bạn !!!
-                    </p>
-                    <p>
-                        Thương hiệu Butterfly Car Air thuộc sở hữu của Công Ty TNHH SX TM DV Thuận Phát.
-                    </p>
-                </div>
-                <div class="footer-guide">
-                    <h4><i class="fa-solid fa-book-open"></i>Hướng dẫn</h4>
-                    <ul>
-                        <li><a asp-page="/SalesPolicy">1. Chính sách bán hàng</a></li>
-                        <li><a asp-page="/Order">2. Đặt hàng & Thanh toán</a></li>
-                        <li><a asp-page="/InforSecurity">3. Bảo mật thông tin khách hàng</a></li>
-                        <li><a asp-page="/CustomerServices">4. Dịch vụ khách hàng</a></li>
-                    </ul>
                 </div>
                 <div class="footer-contact">
                     <h4><i class="fa-solid fa-address-card"></i>Liên hệ</h4>
@@ -139,6 +139,12 @@
                         </p>
                         <p>
                             <a href="#">Chi nhánh 2: 90/29 Trần Văn Ơn, P. Tân Sơn Nhì, Quận Tân Phú, HCM <i class="glyphicon glyphicon-map-marker"></i>(click xem)<br></a>
+                        </p>
+                        <p>
+                            <a href="#">Chi nhánh 3: 118/6A Nguyễn Thị Thập, P. Bình Thuận, Q.7, HCM <i class="glyphicon glyphicon-map-marker"></i>(click xem)<br></a>
+                        </p>
+                        <p>
+                            <a href="#">Chi nhánh 4: Số 14 Đường số 2, P. Tân Phú, Q.7, HCM <i class="glyphicon glyphicon-map-marker"></i>(click xem)<br></a>
                         </p>
                         <p>
                             Hotline: <strong><a class="hotline" style="color: white" href="tel:0939984498">  0939.98.44.98</a></strong><br>
@@ -151,35 +157,14 @@
                         </p>
                     </div>
                 </div>
-                <div class="footer-social-network">
-                    <h4><i class="fa-sharp fa-solid fa-wifi"></i>Chúng tôi trên mạng xã hội</h4>
-                    <div>
-                        <a href="https://www.Facebook.com/butterflycarair">
-                            <img src="~/images/footer/fb.png" alt="">
-                        </a>
-                        @* <a href="#">
-                            <img src="images/footer/zalo.png" alt="">
-                        </a>
-                        <a href="#">
-                            <img src="images/footer/youtube.png" alt="">
-                        </a>
-                        <a href="#">
-                            <img src="images/footer/instagram.webp" alt="">
-                        </a>
-                        <a href="#">
-                            <img src="images/footer/shopee.png" alt="">
-                        </a> *@
-                        <p>
-                            <a href="#" class="dmca">
-                                <img src="~/images/footer/DMCA_logo-grn-btn100w.png" alt="">
-                            </a>
-                        </p>
-                            <a href="#" class="dmca">
-                                <img src="~/images/footer/logodathongbao.png" alt="">
-                            </a>
-                        </p>
-                    </div>
-
+                <div class="footer-guide">
+                    <h4><i class="fa-solid fa-book-open"></i>Hướng dẫn</h4>
+                    <ul>
+                        <li><a asp-page="/SalesPolicy">1. Chính sách bán hàng</a></li>
+                        <li><a asp-page="/Order">2. Đặt hàng & Thanh toán</a></li>
+                        <li><a asp-page="/InforSecurity">3. Bảo mật thông tin khách hàng</a></li>
+                        <li><a asp-page="/CustomerServices">4. Dịch vụ khách hàng</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-info">
@@ -191,11 +176,7 @@
     </footer>
     <script>
         function btnModel(){
-            var a = document.getElementById("sub-model");
-            if( a.style.display=="block"){
-                a.style.display="none";
-            }else
-            a.style.display="block";
+            $('#sub-model').toggle(200);
         }
     </script>
 

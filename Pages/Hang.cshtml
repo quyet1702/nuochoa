@@ -101,7 +101,7 @@
                                         <img src="~/@item.Avatar" alt="Không tìm thấy ảnh">
                                     </div>
                                 </a>
-                                <div class="text-content"><a asp-page="Details">
+                                <div class="text-content"><a asp-page="Details" asp-route-id="@item.Id">
                                     <h2>@item.Name</h2>
                                     <span>@String.Format("{0:0,0 đ}", item.Price).Replace(",",".")</span>
                                     </a><a class="details" asp-page="Details" asp-route-id="@item.Id">Xem chi tiết</a>

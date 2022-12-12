@@ -52,54 +52,53 @@
       }
 </style>
 <section class="section-slideshow">
-    <div class="container">
+    <div class="">
         <div class="row">
             <div class="slideshow">
-                <button class="btn-left" onclick="btnLeftSlideShow()">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
                 <div class="list-slide" id="slide-auto-translate">
-                    <div class="slide active">
-                        <img src="images/slider/slider-2.jpg" alt="">
+                    <div class="slide">
+                        <img src="~/images/slider/slider-5.png" alt="">
                     </div>
                     <div class="slide">
-                        <img src="images/slider/slider-4.jpg" alt="">
+                        <img src="~/images/slider/slider-7.jpg" alt="">
                     </div>
                 </div>
-                <button class="btn-right" onclick="btnRightSlideShow('slide-auto-translate')">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
             </div>
         </div>
     </div>
 </section>
 <section class="section-product" id="product-type-1">
-            <div class="container">
-                <h3 class="heading">HOT DEAL GIẢM 500K</h3>
-                <div class="row">
-                    <div class="product-list" id="product-list">
-                        @foreach (var item in Model.products)
-                        {
-                        <div class="product-item">
-                           <a asp-page="./Details" asp-route-id="@item.Id">
-                                <div class="image-content">
-                                    <img src="@item.Avatar" alt="">
-                                </div>
-                                <div class="text-content">
-                                    <h2>@item.Name</h2>
-                                    <p style="text-decoration: line-through; color: black; text-align:left">@String.Format("{0:0,0 đ}", item.Price).Replace(",",".")</p>
-                                    <span>@String.Format("{0:0,0 đ}", item.Price-500000).Replace(",",".")</span>
-                                    <a class="details" asp-page="./Details" asp-route-id="@item.Id">Xem chi tiết</a>
-                                    <p>(Đã bán @item.Sold)</p>
-                                </div>
-                            </a>
-                        </div>
-                        }
+<div class="container">
+    <h3 class="heading">HOT DEAL GIẢM 500K</h3>
+    @if(Model.products.Count >0){
+    <div class="row">
+        <div class="product-list" id="product-list">
+            @foreach (var item in Model.products)
+            {
+            <div class="product-item">
+                <a asp-page="./Details" asp-route-id="@item.Id">
+                    <div class="image-content">
+                        <img src="@item.Avatar" alt="">
                     </div>
-                </div>
+                    <div class="text-content">
+                        <h2>@item.Name</h2>
+                        <p style="text-decoration: line-through; color: black; text-align:left">@String.Format("{0:0,0 đ}", item.Price).Replace(",",".")</p>
+                        <span>@String.Format("{0:0,0 đ}", item.Price-500000).Replace(",",".")</span>
+                        <a class="details" asp-page="./Details" asp-route-id="@item.Id">Xem chi tiết</a>
+                        <p>(Đã bán @item.Sold)</p>
+                    </div>
+                </a>
             </div>
+            }
+        </div>
+    </div>
+    }
+    else {
+        <p style="text-align:center">Chưa có sản phẩm khuyến mãi</p>
+    }
+</div>
     <script>
-        let index = 1;
+        let index = 2;
         var navItem = document.querySelectorAll(".navbar .nav-menu> .item> a");
         var navItem1 = document.querySelectorAll(".navbar .nav-menu> .item> .subnav li a");
         navItem1[0].style.color="red";
